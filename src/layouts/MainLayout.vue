@@ -23,6 +23,7 @@
       v-model="leftDrawerOpen"
       show-if-above
       bordered
+      overlay
     >
       <q-list>
         <q-item-label
@@ -39,14 +40,14 @@
       </q-list>
     </q-drawer>
 
-    <q-page-container>
-      <router-view />
+    <q-page-container @click="hide">
+      <router-view/>
     </q-page-container>
   </q-layout>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import {defineComponent, ref} from 'vue';
 import EssentialLink from 'components/EssentialLink.vue';
 
 const linksList = [
@@ -101,14 +102,17 @@ export default defineComponent({
     EssentialLink
   },
 
-  setup () {
+  setup() {
     const leftDrawerOpen = ref(false)
 
     return {
       essentialLinks: linksList,
       leftDrawerOpen,
-      toggleLeftDrawer () {
+      toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value
+      },
+      hide() {
+        leftDrawerOpen.value = false
       }
     }
   }
