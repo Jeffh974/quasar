@@ -22,6 +22,7 @@
     <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
+      behavior="mobile"
       bordered
       overlay
     >
@@ -40,7 +41,7 @@
       </q-list>
     </q-drawer>
 
-    <q-page-container @click="hide">
+    <q-page-container>
       <router-view/>
     </q-page-container>
   </q-layout>
@@ -110,9 +111,6 @@ export default defineComponent({
       leftDrawerOpen,
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value
-      },
-      hide() {
-        leftDrawerOpen.value = false
       }
     }
   }
